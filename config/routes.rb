@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :articles
+    resources :mypages, only:[:show]
   end
 end
