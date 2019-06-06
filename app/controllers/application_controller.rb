@@ -3,18 +3,18 @@ class ApplicationController < ActionController::Base
 
 # from_nagareco
 
-  # def after_sign_in_path_for(resource)
-  #   case resource
-  #   when Admin
-  #     admins_top_index_path
-  #   when User
-  #     users_mypage_index_path
-  #   end
-  # end
-  #
-  # def after_sign_out_path_for(resource)
-  #     root_path
-  # end
+def after_sign_in_path_for(resource)
+  case resource
+  when Admin
+    admins_mypage_path(current_admin.id)
+  when User
+    users_mypage_path(current_user.id)
+  end
+end
+
+def after_sign_out_path_for(resource)
+    root_path
+end
 
   protected
   def configure_permitted_parameters
