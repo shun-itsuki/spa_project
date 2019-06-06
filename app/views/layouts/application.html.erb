@@ -9,6 +9,21 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <div class="">
+  <ul>
+    <li><%= link_to "HOME", root_path %></li>
+    <% if user_signed_in? %>
+    <li><%= link_to "MYPAGE", "#" %></li>
+    <li></li>
+    <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></li>
+    <% else %>
+    <li><%= link_to "ABOUT", "#" %></li>
+    <li><%= link_to "LOGIN", new_user_session_path %></li>
+    <li><%= link_to "SIGNUP", new_user_registration_path %></li>
+    <% end %>
+  </ul>
+  </div>
+
   <body>
     <%= yield %>
   </body>

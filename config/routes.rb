@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
+
+  root "users/articles#index"
+
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :users do
+    resources :articles
+  end
 end
