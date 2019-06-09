@@ -39,7 +39,7 @@
       </div>
     </div>
   </nav>
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top : 50px" >
   <%= yield %>
 </div>
   <footer>
@@ -53,16 +53,18 @@
                 <%= link_to "このサイトについて", users_explanation_index_path , class: "nav-link" %>
               </li>
             </ul>
-            <div class="row justify-content-center">
-              <!-- ↓レスポンシブの際に指定 -->
-              <div class="col">
-                <h3>© All rights reserved by Infratop.Inc.</h3>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <!-- ↓レスポンシブの際に指定 -->
+        <div class="footer-col">
+          <h3>© All rights reserved by Infratop.Inc.</h3>
+        </div>
+      </div>
+    </div>
   </footer>
 </body>
 
