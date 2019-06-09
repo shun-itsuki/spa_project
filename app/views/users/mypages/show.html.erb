@@ -1,2 +1,21 @@
-<h1>Users::Mypage#show</h1>
-<p>Find me in app/views/users/mypage/show.html.erb</p>
+<div class="row justify-content-md-center">
+  <div class="">
+    <h1>Users::Mypage#show</h1>
+    <p>Find me in app/views/users/mypage/show.html.erb</p>
+  </div>
+</div>
+
+<div class="row justify-content-md-center">
+  <div class="">
+    <%= @user.id %>
+    <%= @user.email %>
+
+  </div>
+</div>
+
+<div class="row justify-content-md-center">
+  <div class="">
+    <%= link_to "パスワード・email編集", edit_user_registration_path  %>
+    <%= link_to "名前・プロフィール・画像編集", edit_users_mypage_path  %>
+  </div>
+</div>
