@@ -4,28 +4,66 @@
     <title>SpaProject</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <div class="">
-  <ul>
-    <li><%= link_to "HOME", root_path %></li>
-    <% if user_signed_in? %>
-    <li><%= link_to "MYPAGE", users_mypage_path(current_user.id) %></li>
-    <li></li>
-    <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？" %></li>
-    <% else %>
-    <li><%= link_to "ABOUT", "#" %></li>
-    <li><%= link_to "LOGIN", new_user_session_path %></li>
-    <li><%= link_to "SIGNUP", new_user_registration_path %></li>
-    <% end %>
-  </ul>
-  </div>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <li class="navbar-brand">
+        <%= link_to "HOME", root_path %>
+      </li>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarEexample1">
+          <ul class="nav navbar-nav">
+          <% if user_signed_in? %>
+            <li class="nav-item mr-auto">
+              <%= link_to "MYPAGE", users_mypage_path(current_user.id) , class: "nav-link"%>
+            </li>
+            <li class="nav-item mr-auto"></li>
+            <li class="nav-item ">
+              <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class: "nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item mr-auto">
+              <%= link_to "ABOUT", users_explanation_index_path , class: "nav-link" %>
+            </li>
+            <li class="nav-item mr-auto">
+              <%= link_to "LOGIN", new_user_session_path , class: "nav-link"%>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "SIGNUP", new_user_registration_path , class: "nav-link"%>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="container-fluid">
+  <%= yield %>
+</div>
+  <footer>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- ↓レスポンシブの際に指定 -->
+          <div class="col">
+            <ul class="nav">
+              <li class="nav-item">
+                <%= link_to "このサイトについて", users_explanation_index_path , class: "nav-link" %>
+              </li>
+            </ul>
+            <div class="row justify-content-center">
+              <!-- ↓レスポンシブの際に指定 -->
+              <div class="col">
+                <h3>© All rights reserved by Infratop.Inc.</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </footer>
+</body>
 
-  <body>
-    <%= yield %>
-  </body>
 </html>

@@ -1,5 +1,5 @@
 class Users::ArticlesController < ApplicationController
-  
+
   def index
 
   end
