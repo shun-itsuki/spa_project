@@ -1,7 +1,8 @@
 class Users::ArticlesController < ApplicationController
 
   def index
-
+    @articles = Article.all
+    # binding.pry
   end
 
   def new
@@ -12,8 +13,7 @@ class Users::ArticlesController < ApplicationController
     article = Article.new(article_params)
     article.user_id = current_user.id
     article.save
-    # 一旦マイページに。作り終わったらShowpageにとばす
-    redirect_to users_mypage_path(current_user.id)
+    redirect_to users_article_path(article.id)
   end
 
   def edit
@@ -21,7 +21,7 @@ class Users::ArticlesController < ApplicationController
   end
 
   def show
-
+    @article = Article.find(params[:id])
   end
 
   def update
@@ -41,7 +41,7 @@ class Users::ArticlesController < ApplicationController
       :article_image,
       :impression,
       :value,
-      :address,
+      :spa_address,
       :latitude,
       :longitude,
       :deleted_at

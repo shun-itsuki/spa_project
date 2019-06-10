@@ -1,0 +1,19 @@
+<div style="text-align:center;"><h2>記事詳細ページ</h2></div>
+<div class="row justify-content-md-center">
+  <div class="col-md-2">
+    <%= attachment_image_tag @article, :article_image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %>
+  </div>
+  <div class="col-md-8">
+    <table class="table">
+      <tr>
+        <th>名前&nbsp;:</th><td><%= @article.spa_name %></td>
+      </tr>
+      <tr>
+        <th>アドレス&nbsp;:</th><td><%= @article.spa_address %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-2">
+
+  </div>
+</div>
