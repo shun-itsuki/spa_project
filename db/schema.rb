@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_085849) do
     t.string "article_image_id"
     t.text "impression"
     t.integer "value"
-    t.string "address"
+    t.string "spa_address"
     t.integer "latitude"
     t.integer "longitude"
     t.datetime "deleted_at"

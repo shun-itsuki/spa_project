@@ -1,21 +1,45 @@
+<div style="text-align:center; margin:auto;"><h2>Mypage</h2></div>
 <div class="row justify-content-md-center">
-  <div class="">
-    <h1>Users::Mypage#show</h1>
-    <p>Find me in app/views/users/mypage/show.html.erb</p>
+  <div class="col-md-2">
+    <%= attachment_image_tag @user, :image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %>
+  </div>
+  <div class="col-md-8">
+    <table class="table">
+      <tr>
+        <th>名前&nbsp;:</th><td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th>アドレス&nbsp;:</th><td><%= @user.address %></td>
+      </tr>
+      <tr>
+        <th>プロフィール&nbsp;:</th><td><%= @user.profile %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-2">
+    <%= link_to "編集", edit_users_mypage_path, class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
+    <%= link_to "編集", edit_user_registration_path, class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
+    <%= link_to "退会する", user_registration_path(id: current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger btn-lg rounded-pill btn-block" %>
+  </div>
+</div>
+&nbsp;
+<div class="row justify-content-md-center">
+  <div class="col-md-3">
+    <%= link_to "投稿した記事", "#", class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
+  </div>
+  <div class="col-md-3">
+    <%= link_to "いいねした記事", "#", class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
+  </div>
+  <div class="col-md-3">
+    <%= link_to "検索する", "#", class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
+  </div>
+  <div class="col-md-3">
+    <%= link_to "記事を投稿する", new_users_article_path , class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
   </div>
 </div>
 
 <div class="row justify-content-md-center">
   <div class="">
-    <%= @user.id %>
-    <%= @user.email %>
 
-  </div>
-</div>
-
-<div class="row justify-content-md-center">
-  <div class="">
-    <%= link_to "パスワード・email編集", edit_user_registration_path  %>
-    <%= link_to "名前・プロフィール・画像編集", edit_users_mypage_path  %>
   </div>
 </div>
