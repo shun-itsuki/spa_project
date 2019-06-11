@@ -8,8 +8,8 @@ class CreateArticles < ActiveRecord::Migration[5.2]
       t.text :impression
       t.integer :value
       t.string :spa_address
-      t.integer :latitude
-      t.integer :longitude
+      t.float :latitude
+      t.float :longitude
       t.datetime :deleted_at
       t.datetime :created_at
       t.datetime :updated_at

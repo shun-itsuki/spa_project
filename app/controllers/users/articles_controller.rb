@@ -22,6 +22,11 @@ class Users::ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @hash = Gmaps4rails.build_markers(@article) do |article, marker|
+      marker.lat article.latitude
+      marker.lng article.longitude
+    end
+    # binding.pry
   end
 
   def update
