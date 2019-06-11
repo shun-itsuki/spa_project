@@ -1,0 +1,10 @@
+
+<% comments.each do |comment|%>
+  <% unless comment.id.nil? %>
+    <p><%= link_to "#{comment.user.name}さん","#" %></p>
+    <p>コメント：<%= comment.comment%></p>
+    <% if comment.user == current_user %>
+      <p><%= link_to "コメントを削除する", users_article_comments_path(article_id: comment.article_id,comment_id: comment.id) , method: :delete, "data-confirm" => "本当に削除しますか？", remote: true %></p>
+    <% end %>
+  <% end %>
+<% end %>

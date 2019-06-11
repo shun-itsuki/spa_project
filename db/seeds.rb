@@ -13,14 +13,14 @@ User.create!(
    address: "埼玉県"
 )
 
-Article.create!(
-   user_id: "1",
-   spa_name: "七福の湯",
-   date: Tue, 11 Jun 2019,
-   impression: "とてもいい気持ちのお湯でした。",
-   value: 5,
-   spa_address: "東京都渋谷区",
-   latitude: 35.6645956,
-   longitude: 139.6987107,
-   deleted_at: nil,
-)
+# Article.create!(
+#    user_id: "1",
+#    spa_name: "七福の湯",
+#    date: Tue, 11 Jun 2019,
+#    impression: "とてもいい気持ちのお湯でした。",
+#    value: 5,
+#    spa_address: "東京都渋谷区",
+#    latitude: 35.6645956,
+#    longitude: 139.6987107,
+#    deleted_at: nil,
+# )

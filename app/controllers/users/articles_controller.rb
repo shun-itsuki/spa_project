@@ -22,6 +22,9 @@ class Users::ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    # binding.pry
+    @comment = Comment.new
+    @comments = @article.comments
     @hash = Gmaps4rails.build_markers(@article) do |article, marker|
       marker.lat article.latitude
       marker.lng article.longitude

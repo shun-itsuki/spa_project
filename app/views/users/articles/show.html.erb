@@ -41,6 +41,18 @@
   </div>
 </div>
 
+<div class="row justify-center">
+  <h4>コメント</h4>
+  <div id="comments_area">
+    <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+    <%= render partial: "users/comments/index", locals: {comments: @comments} %>
+  </div>
+  <% if user_signed_in? %>
+    <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+    <%= render partial: "users/comments/form", locals: {comment: @comment, article: @article} %>
+  <% end %>
+</div>
+
 <% if @article.user.id == current_user.id %>
   <div class="row justify-content-end">
     <div class="">

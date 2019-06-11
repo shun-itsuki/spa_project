@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :users do
-    resources :articles
+    resources :articles do
+      resource :comments, only:[:show, :create, :destroy]
+    end
     resources :mypages, only:[:show, :edit, :update, :destroy]
     resources :explanation, only:[:index]
   end
