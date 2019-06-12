@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_11_044450) do
+ActiveRecord::Schema.define(version: 2019_06_12_043929) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2019_06_11_044450) do
     t.string "article_image_id"
     t.text "impression"
     t.integer "value"
+    t.integer "likes_count"
     t.string "spa_address"
     t.float "latitude"
     t.float "longitude"
@@ -46,6 +47,13 @@ ActiveRecord::Schema.define(version: 2019_06_11_044450) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
+    t.integer "user_id"
+    t.integer "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "article_id"
     t.datetime "created_at", null: false

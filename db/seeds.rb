@@ -13,6 +13,27 @@ User.create!(
    address: "埼玉県"
 )
 
+User.create!(
+   email: 'b@b',
+   password: 'bbbbbb',
+   name: '毎日温泉',
+   address: "東京都"
+)
+
+User.create!(
+   email: 'c@c',
+   password: 'cccccc',
+   name: '温泉ダミー',
+   address: "群馬県"
+)
+
+User.create!(
+   email: 'd@d',
+   password: 'dddddd',
+   name: 'サンプル温泉',
+   address: "千葉県"
+)
+
 # Article.create!(
 #    user_id: "1",
 #    spa_name: "七福の湯",

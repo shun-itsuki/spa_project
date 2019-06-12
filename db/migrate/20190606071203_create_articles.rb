@@ -7,6 +7,7 @@ class CreateArticles < ActiveRecord::Migration[5.2]
       t.string :article_image_id
       t.text :impression
       t.integer :value
+      t.integer :likes_count
       t.string :spa_address
       t.float :latitude
       t.float :longitude
