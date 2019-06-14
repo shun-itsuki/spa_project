@@ -1,7 +1,7 @@
 class Users::ArticlesController < ApplicationController
 
   def index
-    @articles = Article.all
+    @articles = Article.all.page(params[:page]).per(3)
     # binding.pry
   end
 
