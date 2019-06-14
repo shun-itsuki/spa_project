@@ -19,3 +19,21 @@
 //= require underscore
 //= require gmaps/google
 //= require_tree .
+
+$(function() {
+  $('.jscroll').jscroll({
+    contentSelector: '.article-list',
+    nextSelector: 'span.next:last a'
+  });
+});
+
+$(window).on('scroll', function() {
+    scrollHeight = $(document).height();
+    scrollPosition = $(window).height() + $(window).scrollTop();
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+          $('.jscroll').jscroll({
+            contentSelector: '.article-list',
+            nextSelector: 'span.next:last a'
+          });
+    }
+});

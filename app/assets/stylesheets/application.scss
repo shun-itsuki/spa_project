@@ -16,3 +16,11 @@
 
  // @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ .article-list {
+   padding: 0;
+ }
+
+ nav.pagination {
+   display: none;
+ }
