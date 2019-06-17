@@ -1,5 +1,32 @@
 <div style="text-align:center;"><h2>ようこそスパプロへ</h2></div>
 <div class="row">
+  温泉いいねランキング
+  <% @like_ranking.each.with_index(1) do |article,i| %>
+    <div class="float_item">
+      <%= i %>
+      <%= article.spa_name %><br/>
+      <%= attachment_image_tag article, :article_image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %><br />
+      名前：&nbsp;<%= link_to article.spa_name, users_article_path(article.id) %><br/>
+      いいね：&nbsp;<%= article.likes_count %>
+    </div>
+  <% end %>
+</div>
+
+<br/>
+<div class="row">
+  オススメの温泉
+  <% @recommendations.each do |article| %>
+    <div class="float_item">
+      <%= article.spa_name %><br/>
+      <%= attachment_image_tag article, :article_image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %><br />
+      名前：&nbsp;<%= link_to article.spa_name, users_article_path(article.id) %><br/>
+      いいね：&nbsp;<%= article.likes_count %>
+    </div>
+  <% end %>
+</div>
+<br/>
+
+<div class="row">
   <div class="article-list jscroll">
     <% @articles.each do |article| %>
       <div class="float_item">
@@ -9,7 +36,6 @@
         いいね：&nbsp;<%= article.likes_count %>
       </div>
     <% end %>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script> -->
     <%= paginate @articles %>
   </div>
 </div>
