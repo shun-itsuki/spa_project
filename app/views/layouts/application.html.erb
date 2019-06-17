@@ -46,6 +46,8 @@
   <%= yield %>
 </div>
   <footer>
+    <% if admin_signed_in? %>
+    <% else %>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <div class="row">
@@ -68,6 +70,7 @@
         </div>
       </div>
     </div>
+    <% end %>
   </footer>
 </body>
 

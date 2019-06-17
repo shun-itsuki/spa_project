@@ -1,0 +1,9 @@
+<div style="text-align:center;"><h2>ユーザー一覧</h2></div>
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="float_item">
+      <%= attachment_image_tag user, :image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %><br />
+      名前：&nbsp;<%= link_to user.name, admins_user_path(user.id) %><br/>
+    </div>
+  <% end %>
+</div>

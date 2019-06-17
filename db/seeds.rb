@@ -34,6 +34,11 @@ User.create!(
    address: "千葉県"
 )
 
+Admin.create!(
+   email: 'admin@a',
+   password: 'aaaaaa',
+)
+
 # Article.create!(
 #    user_id: "1",
 #    spa_name: "七福の湯",

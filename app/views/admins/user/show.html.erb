@@ -1,0 +1,23 @@
+<div style="text-align:center; margin:auto;"><h2>Mypage</h2></div>
+<div class="row justify-content-md-center">
+  <div class="col-md-2">
+    <%= attachment_image_tag @user, :image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %>
+  </div>
+  <div class="col-md-8">
+    <table class="table">
+      <tr>
+        <th>名前&nbsp;:</th><td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th>アドレス&nbsp;:</th><td><%= @user.address %></td>
+      </tr>
+      <tr>
+        <th>プロフィール&nbsp;:</th><td><%= @user.profile %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-2">
+    <%= link_to "編集", edit_admins_user_path, class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
+    <%= link_to "退会させる", admins_user_path, method: :delete, "data-confirm" => "本当に退会させますか？", class: "btn btn-danger btn-lg rounded-pill btn-block" %>
+  </div>
+</div>
