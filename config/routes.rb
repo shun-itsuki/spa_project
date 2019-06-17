@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       resource :likes, only:[:create, :destroy]
     end
     resources :mypages, only:[:show, :edit, :update, :destroy]
+    resources :mypage_like, only:[:show]
     resources :explanation, only:[:index]
   end
 

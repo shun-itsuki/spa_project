@@ -1,7 +1,7 @@
 class Users::ArticlesController < ApplicationController
 
   def index
-    @articles = Article.all.page(params[:page]).per(3)
+    @articles = Article.page(params[:page]).per(3)
     # binding.pry
     @like_ranking = Article.where(created_at:1.month.ago..Time.now).order(likes_count: "DESC").limit(4)
     @recommendations = Article.order("RANDOM()").limit(4)

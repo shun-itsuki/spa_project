@@ -1,0 +1,2 @@
+module Users::MypageLikeHelper
+end

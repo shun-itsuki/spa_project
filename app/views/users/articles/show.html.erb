@@ -52,7 +52,7 @@
     <%= render partial: "users/comments/form", locals: {comment: @comment, article: @article} %>
   <% end %>
 </div>
-
+<!-- いいねのrender -->
 <div id="likes_buttons_<%= @article.id %>">
  <%= render partial: 'users/likes/like', locals: { article: @article,} %>
 </div>
