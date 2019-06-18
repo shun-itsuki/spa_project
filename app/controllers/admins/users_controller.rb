@@ -1,4 +1,4 @@
-class Admins::UserController < ApplicationController
+class Admins::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
@@ -7,6 +7,7 @@ class Admins::UserController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @articles = Article.where(user_id: params[:id]).page(params[:page]).per(5)
   end
 
   def edit

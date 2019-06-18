@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :mypages, only:[:show]
-    resources :user, except:[:new, :create]
+    resources :users, except:[:new, :create]
+    resources :articles, only: [:index, :show, :destroy]
   end
 end

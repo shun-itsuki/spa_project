@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="article-list jscroll">
+    <% @articles.each do |article| %>
+      <div class="float_item">
+        <%= attachment_image_tag article, :article_image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %><br />
+        名前：&nbsp;<%= link_to article.spa_name, admins_article_path(article.id) %><br/>
+        書き手：&nbsp;<%= article.user.name %><br/>
+        いいね：&nbsp;<%= article.likes_count %>
+      </div>
+    <% end %>
+    <%= paginate @articles %>
+  </div>
+</div>

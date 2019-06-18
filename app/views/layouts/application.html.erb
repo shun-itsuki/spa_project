@@ -15,7 +15,11 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <li class="navbar-brand">
-        <%= link_to "HOME", root_path %>
+        <% if admin_signed_in? %>
+          <%= link_to "TOP", admins_mypage_path(current_admin) %>
+        <% else %>
+          <%= link_to "HOME", root_path %>
+        <% end %>
       </li>
         <div class="collapse navbar-collapse justify-content-end" id="navbarEexample1">
           <ul class="nav navbar-nav">
@@ -26,6 +30,16 @@
             <li class="nav-item mr-auto"></li>
             <li class="nav-item ">
               <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class: "nav-link" %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item mr-auto">
+              <%= link_to "USERS", admins_users_path , class: "nav-link"%>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "ARTICLES", admins_articles_path , class: "nav-link"%>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "LOGOUT", destroy_admin_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class: "nav-link" %>
             </li>
           <% else %>
             <li class="nav-item mr-auto">
