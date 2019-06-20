@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     end
     resources :mypages, only:[:show, :edit, :update, :destroy]
     resources :mypage_like, only:[:show]
+    resources :search, only:[:show,]
+    get "/search_around", to: "search#search"
     resources :explanation, only:[:index]
   end
 
