@@ -1,4 +1,4 @@
-<div style="text-align:center; margin:auto;"><h2>Mypage</h2></div>
+<h2 class="title">Mypage</h2>
 <div class="row justify-content-md-center">
   <div class="col-md-2">
     <%= attachment_image_tag @user, :image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %>
@@ -6,19 +6,19 @@
     <div class="col-md-8">
       <table class="table">
         <tr>
-          <th>名前&nbsp;:</th><td><%= @user.name %></td>
+          <th>名前&nbsp;：</th><td><%= @user.name %></td>
         </tr>
         <tr>
-          <th>アドレス&nbsp;:</th><td><%= @user.address %></td>
+          <th>アドレス&nbsp;：</th><td><%= @user.address %></td>
         </tr>
         <tr>
-          <th>プロフィール&nbsp;:</th><td><%= @user.profile %></td>
+          <th>プロフィール&nbsp;：</th><td><%= @user.profile %></td>
         </tr>
       </table>
     </div>
   <div class="col-md-2">
     <%= link_to "編集", edit_users_mypage_path, class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
-    <%= link_to "編集", edit_user_registration_path, class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
+    <%= link_to "大事な編集", edit_user_registration_path, class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
     <%= link_to "退会する", user_registration_path(id: current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger btn-lg rounded-pill btn-block" %>
   </div>
 </div>
@@ -39,19 +39,18 @@
   </div>
 </div>
 
-<div class="container">
   <div class="row">
-    <div class="article-list jscroll">
-      <% @articles.each do |article| %>
-        <div class="card" style="width: 18rem;">
-          <%= attachment_image_tag article, :article_image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %>
+    <% @articles.each do |article| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="card img-thumbnail">
+        <%= attachment_image_tag article, :article_image, :fill,320,250, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "320x250" %>
+        <div class="card-body px-2 py-3">
           <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
           <p class="card-text">作成者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
-          <p class="card-text"><%= (article.impression).truncate(80) %></p>
+          <p class="card-text"><%= (article.impression).truncate(60) %></p>
           <p>いいね：&nbsp;<%= article.likes_count %></p>
         </div>
-      <% end %>
-      <%= paginate @articles %>
+      </div>
     </div>
+    <% end %>
   </div>
-</div>

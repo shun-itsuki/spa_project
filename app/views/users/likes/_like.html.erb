@@ -4,23 +4,16 @@
   <% unless article.like_user(current_user.id).blank? %>
 
     <%= link_to users_article_likes_path(article_id: article.id , id: article.likes[0].id), method: :delete, remote: true do %>
-      <div class="vertical_like">
-        <i class="material-icons red-text">favorite</i>
-        <span class="red-text" >
-          <%= article.likes_count %>
-        </span>
+      <div class="">
+        いいね：<%= article.likes_count %>
       </div>
     <% end %>
 
   <% else %>
 
     <%= link_to users_article_likes_path(article.id), method: :post, remote: true do %>
-      <div class="vertical_like">
-        <i class="material-icons grey-text text-darken-2">favorite_border</i>
-        <span class="grey-text text-darken-2" >
-          <%= article.likes_count %>
-        </span>
-      </div>
+      <i class="fa fa-thumbs-o-up"></i>
+        いいねを押す：<%= article.likes_count %>
     <% end %>
   <% end %>
 

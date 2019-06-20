@@ -1,7 +1,6 @@
 class Users::CommentsController < ApplicationController
   def create
     @article = Article.find(params[:article_id])
-    # @comment = @article.comments.build(comment_params)
     @comment = Comment.new(comment_params)
     @comment.article_id = @article.id
     @comment.user_id = current_user.id

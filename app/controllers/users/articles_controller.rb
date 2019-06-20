@@ -1,7 +1,7 @@
 class Users::ArticlesController < ApplicationController
 
   def index
-    @articles = Article.page(params[:page]).per(3)
+    @articles = Article.page(params[:page]).per(16)
     @like_ranking = Article.where(created_at:1.month.ago..Time.now).order(likes_count: "DESC").limit(4)
     @recommendations = Article.order("RANDOM()").limit(4)
   end
@@ -23,14 +23,12 @@ class Users::ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    # binding.pry
     @comment = Comment.new
     @comments = @article.comments
     @hash = Gmaps4rails.build_markers(@article) do |article, marker|
       marker.lat article.latitude
       marker.lng article.longitude
     end
-    # binding.pry
   end
 
   def update

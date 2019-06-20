@@ -1,64 +1,59 @@
-<div class="row justify-content-md-center">
-  <h2>ようこそスパプロへ！</h2>
-</div>
-<div class="row justify-content-md-center">
-  <h4>温泉いいねランキング</h4>
-</div>
-
-<div class="container">
+<h2 class="title">ようこそスパプロへ！</h2>
+  <h4 class="title">温泉いいねランキング</h4>
   <div class="row">
     <% @like_ranking.each.with_index(1) do |article,i| %>
-      <div class="card w-25" style="width: 18rem;">
+    <div class="col-sm-6 col-md-3">
+      <div class="card img-thumbnail">
         <%= i %>位：<%= article.spa_name %>
-        <%= attachment_image_tag article, :article_image, :fill,280,200, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "280x200" %>
-        <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
-        <p class="card-text">作成者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
-        <p class="card-text"><%= (article.impression).truncate(80) %></p>
-        <p>いいね：&nbsp;<%= article.likes_count %></p>
-      </div>
-    <% end %>
-  </div>
-</div>
-<br/>
-
-<div class="row justify-content-md-center">
-  <div class="col-9">
-    <div class="row justify-content-md-center">
-      <h4 class = "title">温泉一覧</h4>
-    </div>
-      <div class="container">
-        <div class="row">
-          <div class="article-list jscroll">
-            <% @articles.each do |article| %>
-              <div class="card" style="width: 18rem;">
-                <%= attachment_image_tag article, :article_image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %>
-                <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
-                <p class="card-text">作成者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
-                <p class="card-text"><%= (article.impression).truncate(80) %></p>
-                <p>いいね：&nbsp;<%= article.likes_count %></p>
-              </div>
-            <% end %>
-            <%= paginate @articles %>
-          </div>
+        <%= attachment_image_tag article, :article_image, :fill,320,250, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "320x250" %>
+        <div class="card-body px-2 py-3">
+          <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
+          <p class="card-text">作成者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
+          <p class="card-text"><%= (article.impression).truncate(60) %></p>
+          <p>いいね：&nbsp;<%= article.likes_count %></p>
         </div>
       </div>
     </div>
-    <div class="col-3">
-      <div class="row justify-content-md-center">
-        <h4>温泉おすすめ</h4>
-      </div>
-      <div class="container">
+    <% end %>
+  </div>
+<br/>
+<!-- cssで場所を調整する -->
+  <h4 class="title">温泉一覧、温泉おすすめ</h4>
+    <div class="row">
+      <div class="col-9">
         <div class="row">
-        <% @recommendations.each do |article| %>
-          <div class="card" style="width: 18rem;">
-            <%= attachment_image_tag article, :article_image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %>
-            <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
-            <p class="card-text">作成者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
-            <p class="card-text"><%= (article.impression).truncate(80) %></p>
-            <p>いいね：&nbsp;<%= article.likes_count %></p>
+        <% @articles.each do |article| %>
+          <!-- <div class="article-list jscroll"> -->
+            <div class="col-sm-6 col-md-3">
+              <div class="card img-thumbnail">
+                <%= attachment_image_tag article, :article_image, :fill,230,200, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "230x200" %>
+                <div class="card-body px-2 py-3">
+                  <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
+                  <p class="card-text">作成者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
+                  <p class="card-text"><%= (article.impression).truncate(60) %></p>
+                  <p>いいね：&nbsp;<%= article.likes_count %></p>
+                </div>
+              </div>
+            </div>
+            <% end %>
           </div>
-        <% end %>
+        </div>
+      <div class="col-3">
+        <div class="row">
+          <% @recommendations.each do |article| %>
+          <div class="col-12">
+            <div class="card img-thumbnail">
+              <%= attachment_image_tag article, :article_image, :fill,320,250, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "320x250" %>
+              <div class="card-body px-2 py-3">
+                <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
+                <p class="card-text">作成者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
+                <p class="card-text"><%= (article.impression).truncate(60) %></p>
+                <p>いいね：&nbsp;<%= article.likes_count %></p>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    <%= paginate @articles %>
