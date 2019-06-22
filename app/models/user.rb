@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   attachment :image
 
+  with_options on: :update do |update|
+    update.validates :name, presence: true
+    update.validates :profile, length: { in: 1..35 }
+  end
 end

@@ -11,10 +11,14 @@ class Users::ArticlesController < ApplicationController
   end
 
   def create
-    article = Article.new(article_params)
-    article.user_id = current_user.id
-    article.save
-    redirect_to users_article_path(article.id)
+    # binding.pry
+    @article = Article.new(article_params)
+    @article.user_id = current_user.id
+    if @article.save
+      redirect_to users_article_path(@article.id)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -22,6 +26,7 @@ class Users::ArticlesController < ApplicationController
   end
 
   def show
+    # binding.pry
     @article = Article.find(params[:id])
     @comment = Comment.new
     @comments = @article.comments
@@ -32,15 +37,18 @@ class Users::ArticlesController < ApplicationController
   end
 
   def update
-    article = Article.find(params[:id])
-    article.update(article_params)
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
     redirect_to users_article_path(article.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
     article = Article.find(params[:id])
     article.destroy
-    redirect_to root_path
+    redirect_to users_mypage_path(current_user.id)
   end
 
   private

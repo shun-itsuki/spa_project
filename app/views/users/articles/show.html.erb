@@ -1,9 +1,9 @@
 <h2 class="title">記事詳細ページ</h2>
 <div class="row">
-  <div class="col-md-6">
-    <%= attachment_image_tag @article, :article_image, :fill,700,500, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "700x500" %>
+  <div class="col-5 offset-1">
+    <%= attachment_image_tag @article, :article_image, :fill,580,500, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "580x500" %>
   </div>
-  <div class="col-md-6">
+  <div class="col-5">
     <table class="table">
       <tr>
         <th>温泉名&nbsp;:</th><td><%= @article.spa_name %></td>
@@ -24,36 +24,31 @@
         });
       </script>
   </div>
-</div>
-
-<div class="row justify-content-center">
-  <div class="col-12">
+  <div class="col-10 offset-1">
     <p class="border">感想：<%= @article.impression %></p>
   </div>
-  <div class="col-10">
+  <div class="col-8 offset-1">
     <p class="border">書き手：<%= @article.user.name %>&nbsp;日付：<%= @article.date %>&nbsp;</p>
   </div>
-  <!-- いいねのrender -->
-  <div class="col-2" id="likes_buttons_<%= @article.id %>">
-   <%= render partial: 'users/likes/like', locals: { article: @article,} %>
+  <div class="col-2">
+    <div class="col-2" id="likes_buttons_<%= @article.id %>">
+     <%= render partial: 'users/likes/like', locals: { article: @article,} %>
+    </div>
   </div>
-
-</div>
-
-<h4>コメント</h4>
-<div class="row">
-
-  <% if user_signed_in? %>
-    <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-    <%= render partial: "users/comments/form", locals: {comment: @comment, article: @article} %>
-  <% end %>
-  <div id="comments_area">
-    <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
-    <%= render partial: "users/comments/index", locals: {comments: @comments} %>
+  <div class="col-10 offset-1">
+    <h4>コメント</h4>
+    <div class="row">
+      <% if user_signed_in? %>
+        <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+        <%= render partial: "users/comments/form", locals: {comment: @comment, article: @article} %>
+      <% end %>
+      <div id="comments_area">
+        <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+        <%= render partial: "users/comments/index", locals: {comments: @comments} %>
+      </div>
+    </div>
   </div>
-
 </div>
-
 
 <% if user_signed_in? %>
   <% if @article.user_id == current_user.id %>
