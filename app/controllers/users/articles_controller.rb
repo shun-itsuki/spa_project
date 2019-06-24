@@ -11,7 +11,7 @@ class Users::ArticlesController < ApplicationController
   end
 
   def create
-    # binding.pry
+    binding.pry
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     if @article.save

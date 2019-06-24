@@ -1,9 +1,14 @@
+<div class="container">
+  <div class="rowte">
+    <div class="col-8 offset-2">
+      <button onclick="geoFindMe()" type="button" class="btn-outline-secondary" style="text-align:center;">現在地から温泉を探す！</button>
+      <div id="out"></div>
+      <div id="map" style='width: 100%; height: 300px;'></div>
+    </div>
+  </div>
+</div>
 
-<p><button onclick="geoFindMe()">Show my location</button></p>
-<div id="out"></div>
-<div id="map" style='width: 100%; height: 300px;'></div>
-
-  <script>
+<script>
   function geoFindMe() {
   var output = document.getElementById("out");
   // お使いのブラウザがジオロケーション未対応の場合
@@ -40,9 +45,11 @@
     // グーグルマップを表示
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      console.log(latitude);
       markers = handler.addMarkers(total_locs);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
+      handler.getMap().setCenter( new google.maps.LatLng(latitude,longitude));
       handler.getMap().setZoom(17);
     });
   }
