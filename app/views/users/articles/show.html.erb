@@ -1,7 +1,7 @@
 
 <div class="row">
   <div class="col-5 offset-1">
-    <%= attachment_image_tag @article, :article_image, :fill,580,500, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "580x500" %>
+    <%= attachment_image_tag @article, :article_image, :fill,580,500, format:"jpeg", class:"", fallback:"/images/no_image.jpeg", :size => "580x500" %>
   </div>
   <div class="col-5">
     <table class="table">
