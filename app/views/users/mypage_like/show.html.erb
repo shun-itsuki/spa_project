@@ -1,7 +1,7 @@
 <h2 class="title">Mypage</h2>
 <div class="row">
   <div class="col-2 offset-1">
-    <%= attachment_image_tag @user, :image, :fill,220,180, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "220x180" %>
+    <%= attachment_image_tag @user, :image, :fill,220,180, format:"jpeg", fallback:"/images/no_image.jpeg", :size => "220x180" %>
   </div>
   <div class="col-6">
     <table class="table">
@@ -43,7 +43,7 @@
         <% @likes.each do |like| %>
           <div class="col-sm-6 col-md-3">
             <div class="card img-thumbnail shadow-sm">
-              <%= attachment_image_tag like.article, :article_image, :fill,260,250, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "260x250" %>
+              <%= attachment_image_tag like.article, :article_image, :fill,260,250, format:"jpeg", class:"card-image-top", fallback:"/images/no_image.jpeg", :size => "260x250" %>
               <div class="card-body px-2 py-3">
                 <h5 class="card-title"><%= link_to like.article.spa_name, users_article_path(like.article.id) %></h5>
                 <p class="card-text">投稿者：<%= link_to like.article.user.name, users_mypage_path(like.article.user.id) %></p>

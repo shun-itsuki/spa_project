@@ -6,7 +6,7 @@
           <div class="col-sm-6 col-md-3 ">
             <div class="card-deck">
               <div class="card img-thumbnail shadow-lg">
-                <img class="card-img"><%= attachment_image_tag article, :article_image, :fill,260,250, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "260x250" %>
+                <img class="card-img"><%= attachment_image_tag article, :article_image, :fill,260,250, format:"jpeg", class:"card-image-top", fallback:"/images/no_image.jpeg", :size => "260x250" %>
                 <div class="card-body bg-light">
                   <h5 class="card-title"><%= i %>位：<%= link_to article.spa_name, users_article_path(article.id) %></h5>
                   <p class="card-text">投稿者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
@@ -32,7 +32,7 @@
                 <% @articles.each do |article| %>
                   <div class="col-sm-6 col-md-3">
                     <div class="card img-thumbnail shadow-lg">
-                      <%= attachment_image_tag article, :article_image, :fill,180,190, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "180x190" %>
+                      <%= attachment_image_tag article, :article_image, :fill,180,190, format:"jpeg", class:"card-image-top", fallback:"/images/no_image.jpeg", :size => "180x190" %>
                       <div class="card-body px-2 py-3">
                         <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
                         <p class="card-text">投稿者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
@@ -51,10 +51,10 @@
               <% @recommendations.each do |article| %>
                 <div class="col-12">
                   <div class="card img-thumbnail shadow-lg">
-                    <%= attachment_image_tag article, :article_image, :fill,260,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "260x200" %>
+                    <%= attachment_image_tag article, :article_image, :fill,260,200, format:"jpeg", class:"", fallback:"/images/no_image.jpeg", :size => "260x200" %>
                     <div class="card-body px-2 py-3">
                       <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
-                      <p class="card-text">投稿者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
+                      <p class="card-text">：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
                       <p class="card-text"><%= (article.impression).truncate(30) %></p>
                       <p>いいね：<i class="fas fa-heart"><%= article.likes_count %></i></p>
                     </div>
