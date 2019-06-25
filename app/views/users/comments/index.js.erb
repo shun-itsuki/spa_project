@@ -1,3 +1,2 @@
-// $("#comments_area").html("<%= j(render 'index', { comments: @comment.article.comments }) %>")
 $("#comments_area").html("<%= j(render 'index', { comments: Comment.where(article_id: @comment.article.id) }) %>")
 $("textarea").val('')

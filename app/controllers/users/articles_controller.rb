@@ -11,7 +11,7 @@ class Users::ArticlesController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     if @article.save
@@ -39,7 +39,7 @@ class Users::ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if @article.update(article_params)
-    redirect_to users_article_path(article.id)
+    redirect_to users_article_path(@article.id)
     else
       render :edit
     end
