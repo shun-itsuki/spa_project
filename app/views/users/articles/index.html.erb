@@ -1,0 +1,69 @@
+<h3 class="title">みんなの注目の温泉<i class="fas fa-kiss-wink-heart"></i></h3>
+  <div class="row bg-info" style="margin-top : 30px" >
+    <div class="col-10 offset-1">
+      <div class="row" style="margin-bottom : 30px">
+        <% @like_ranking.each.with_index(1) do |article,i| %>
+          <div class="col-sm-6 col-md-3 ">
+            <div class="card-deck">
+              <div class="card img-thumbnail shadow-lg">
+                <img class="card-img"><%= attachment_image_tag article, :article_image, :fill,260,250, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "260x250" %>
+                <div class="card-body bg-light">
+                  <h5 class="card-title"><%= i %>位：<%= link_to article.spa_name, users_article_path(article.id) %></h5>
+                  <p class="card-text">投稿者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
+                  <p class="card-text"><%= (article.impression).truncate(40) %></p>
+                  <p>いいね：<i class="fas fa-heart"><%= article.likes_count %></i></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<br/>
+<!-- cssで場所を調整する -->
+  <h4 class="title">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;温泉一覧<i class="fas fa-hot-tub"></i>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;温泉おすすめ<i class="fas fa-check"></i></h4>
+    <div class="row">
+      <div class="col-10 offset-1">
+        <div class="row">
+          <div class="col-9">
+            <div class="article-list jscroll">
+              <div class="row">
+                <% @articles.each do |article| %>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="card img-thumbnail shadow-lg">
+                      <%= attachment_image_tag article, :article_image, :fill,180,190, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "180x190" %>
+                      <div class="card-body px-2 py-3">
+                        <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
+                        <p class="card-text">投稿者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
+                        <p class="card-text"><%= (article.impression).truncate(30) %></p>
+                        <p>いいね：<i class="fas fa-heart"><%= article.likes_count %></i></p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+                <%= paginate @articles %>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="row">
+              <% @recommendations.each do |article| %>
+                <div class="col-12">
+                  <div class="card img-thumbnail shadow-lg">
+                    <%= attachment_image_tag article, :article_image, :fill,260,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "260x200" %>
+                    <div class="card-body px-2 py-3">
+                      <h5 class="card-title"><%= link_to article.spa_name, users_article_path(article.id) %></h5>
+                      <p class="card-text">投稿者：<%= link_to article.user.name, users_mypage_path(article.user.id) %></p>
+                      <p class="card-text"><%= (article.impression).truncate(30) %></p>
+                      <p>いいね：<i class="fas fa-heart"><%= article.likes_count %></i></p>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+

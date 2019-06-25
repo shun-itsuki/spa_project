@@ -1,0 +1,22 @@
+<h3 class="title">記事一覧</h3>
+<div class="row">
+  <div class="col-10 offset-1">
+    <div class="article-list jscroll">
+      <div class="row">
+        <% @articles.each do |article| %>
+          <div class="col-sm-6 col-md-3">
+            <div class="card img-thumbnail shadow-lg">
+              <%= attachment_image_tag article, :article_image, :fill,260,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "260x200" %>
+              <h5 class="card-title" style="margin-top:10px"><%= link_to article.spa_name, admins_article_path(article.id) %></h5>
+              <p class="card-text">投稿者：<%= link_to article.user.name, admins_user_path(article.user.id) %></p>
+              <p class="card-text"><%= (article.impression).truncate(30) %></p>
+              <p>いいね：<i class="fas fa-heart"><%= article.likes_count %></i></p>
+            </div>
+          </div>
+        <% end %>
+        <%= paginate @articles %>
+      </div>
+    </div>
+  </div>
+</div>
+

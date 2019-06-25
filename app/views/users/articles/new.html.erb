@@ -1,0 +1,45 @@
+<div class="row justify-content-md-center">
+  <div class="">
+    <h1>温泉投稿画面</h1>
+    <%= form_for(@article, url: users_articles_path) do |f| %>
+
+      <% if @article.errors.any? %>
+        <%= @article.errors.count %>件のエラーが発生しました
+        <br>
+        <% @article.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+
+      <div class="">
+        <%= f.label :画像を選んでね！ %><br />
+        <%= f.attachment_field :article_image %>
+      </div><br />
+      <div class="form-group">
+        <%= f.label :spa_name %><br />
+        <%= f.text_field :spa_name, class: "form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :spa_address %><br />
+        <%= f.text_field :spa_address, class: "form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :date %><br />
+        <%= f.date_field :date, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :impression %><br />
+        <%= f.text_field :impression, class: "form-control" %>
+      </div>
+      <!-- ↓追加で機能を足す場合使う -->
+      <!-- <div class="form-group">
+        <%# <%= f.label :value %><br /> %>
+        <%# <%= f.text_field :value, class: "form-control" %> %>
+      </div> -->
+      <div class="action">
+        <br />
+        <%= f.submit "温泉を投稿する", class: "btn btn-outline-info btn-lg rounded-pill btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>

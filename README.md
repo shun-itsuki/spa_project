@@ -1,24 +1,20 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+SPA_PROJECT
 
-Things you may want to cover:
+温泉好きの方のためのアプリケーションです。
+このアプリケーションでは下記のことが可能です。
 
-* Ruby version
+●会員登録機能
+●温泉の投稿機能
+●現在地から温泉を探す機能
+●ランキングからおすすめの記事が見れる機能
 
-* System dependencies
 
-* Configuration
+●使い方
+ユーザーはログインしていない状態でも、投稿された記事を閲覧することができます。
+閲覧できる記事には、温泉のMAPや、感想、評価などが記載されています。
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+会員登録をした場合は、上記の機能に加え記事を投稿することができます。
+また、他のユーザーが投稿した記事に対して「いいね」を押すことができたり
+コメントをしてコミュニケーションを測ることができます。

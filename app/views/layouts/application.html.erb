@@ -4,12 +4,89 @@
     <title>SpaProject</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- ↓gitにあげるとき注意！ 環境変数に直す-->
+    <script src="//maps.google.com/maps/api/js?key="></script>
+    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+    <script src="https://kit.fontawesome.com/ad7c6e2e50.js"></script>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <li class="navbar-brand">
+        <% if admin_signed_in? %>
+          <%= link_to "TOP", admins_mypage_path(current_admin) %>
+        <% else %>
+          <%= link_to image_tag("logo.jpg",:size =>'220x60'), root_path %>
+        <% end %>
+      </li>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarEexample1">
+          <ul class="nav navbar-nav">
+          <% if user_signed_in? %>
+            <li class="nav-item mr-auto">
+              <%= link_to "MYPAGE", users_mypage_path(current_user.id) , class: "fas fa-user nav-link"%>
+            </li>
+            <li class="nav-item mr-auto"></li>
+            <li class="nav-item ">
+              <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class: "nav-link fas fa-sign-out-alt" %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item mr-auto">
+              <%= link_to "USERS", admins_users_path , class: "nav-link"%>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "ARTICLES", admins_articles_path , class: "nav-link"%>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "LOGOUT", destroy_admin_session_path, method: :delete, "data-confirm" => "本当にログアウトしますか？", class: "nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item mr-auto">
+              <%= link_to "ABOUT", users_explanation_index_path , class: "nav-link fas fa-paper-plane" %>
+            </li>
+            <li class="nav-item mr-auto">
+              <%= link_to "LOGIN", new_user_session_path , class: "nav-link fas fa-sign-in-alt"%>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "SIGNUP", new_user_registration_path , class: "nav-link fas fa-user-plus"%>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="container-fluid allpage" style="margin-top : 30px" >
+  <%= yield %>
+</div>
+  <footer>
+    <% if admin_signed_in? %>
+    <% else %>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- ↓レスポンシブの際に指定 -->
+          <div class="col">
+            <ul class="nav">
+              <li class="nav-item">
+                <%= link_to "このサイトについて", users_explanation_index_path , class: "nav-link" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <!-- ↓レスポンシブの際に指定 -->
+        <div class="footer-col">
+          <h3>© All rights reserved by Infratop.Inc.</h3>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </footer>
+</body>
+
 </html>

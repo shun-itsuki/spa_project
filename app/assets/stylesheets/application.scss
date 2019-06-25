@@ -13,3 +13,52 @@
  *= require_tree .
  *= require_self
  */
+
+ // @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+ nav.pagination {
+   display: none;
+ }
+ 
+ body{
+   background-color: #E6F3F3;
+ }
+
+ .article-list {
+   padding: 0;
+ }
+
+.title{
+  text-align: center;
+}
+
+.card{
+  margin-top: 20px;
+}
+
+.border{
+  margin-top: 20px;
+}
+
+.heart{
+  margin-top: 20px;
+}
+
+.fa-heart{
+  color: #DE5065;
+}
+
+.fa-heart-broken{
+  color: #DE5065;
+}
+
+.fa-kiss-wink-heart{
+  color: #DE5065;
+}
+
+.jumbotron{
+  margin-top: 20px;
+  background-color:  #F9EFF0;
+  border-radius: 40px;
+}

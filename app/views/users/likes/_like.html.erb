@@ -1,0 +1,15 @@
+
+<% if user_signed_in? %>
+  <% unless article.like_user(current_user.id).blank? %>
+    <%= link_to users_article_likes_path(article_id: article.id , id: article.likes[0].id), method: :delete, remote: true do %>
+      <i class="fas fa-heart"><%= article.likes_count %></i>
+    <% end %>
+  <% else %>
+    <%= link_to users_article_likes_path(article.id), method: :post, remote: true do %>
+      <i class="fas fa-heart-broken"><%= article.likes_count %></i>
+    <% end %>
+  <% end %>
+  <!--↓未ログイン時-->
+  <% else %>
+      <i class="fas fa-heart"><%= article.likes_count %></i>
+  <% end %>

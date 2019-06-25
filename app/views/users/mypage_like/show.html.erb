@@ -1,0 +1,60 @@
+<h2 class="title">Mypage</h2>
+<div class="row">
+  <div class="col-2 offset-1">
+    <%= attachment_image_tag @user, :image, :fill,220,180, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "220x180" %>
+  </div>
+  <div class="col-6">
+    <table class="table">
+      <tr>
+        <th>name：</th><td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th>address：</th><td><%= @user.address %></td>
+      </tr>
+      <tr>
+        <th>profile：</th><td><%= @user.profile %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-2">
+    <%= link_to "編集", edit_users_mypage_path(current_user.id), class: "btn btn-outline-primary btn-lg rounded-pill btn-block"  %>
+    <%= link_to "大事な編集", edit_user_registration_path(current_user.id), class: "btn btn-outline-primary btn-lg rounded-pill btn-block"  %>
+    <%= link_to "退会する", user_registration_path(current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger btn-lg rounded-pill btn-block" %>
+  </div>
+  <div class="col-10 offset-1" style="margin-top : 20px">
+    <div class="row">
+      <div class="col-3 ">
+        <%= link_to "投稿記事", users_mypage_path , class: "btn btn-outline-info btn-lg rounded-pill btn-block"  %>
+      </div>
+      <div class="col-3 ">
+        <%= link_to "いいねした記事", users_mypage_like_path(current_user.id) , class: "btn btn-outline-info btn-lg rounded-pill btn-block"  %>
+      </div>
+      <div class="col-3 ">
+        <%= link_to "現在地から検索", users_search_path(current_user.id) , class: "btn btn-outline-info btn-lg rounded-pill btn-block"  %>
+      </div>
+      <div class="col-3 ">
+        <%= link_to "記事を投稿する", new_users_article_path , class: "btn btn-outline-info btn-lg rounded-pill btn-block"  %>
+      </div>
+    </div>
+  </div>
+  <div class="col-10 offset-1">
+    <div class="article-list jscroll">
+      <div class="row">
+        <% @likes.each do |like| %>
+          <div class="col-sm-6 col-md-3">
+            <div class="card img-thumbnail shadow-sm">
+              <%= attachment_image_tag like.article, :article_image, :fill,260,250, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "260x250" %>
+              <div class="card-body px-2 py-3">
+                <h5 class="card-title"><%= link_to like.article.spa_name, users_article_path(like.article.id) %></h5>
+                <p class="card-text">投稿者：<%= link_to like.article.user.name, users_mypage_path(like.article.user.id) %></p>
+                <p class="card-text"><%= (like.article.impression).truncate(30) %></p>
+                <i class="fas fa-heart"><%= like.article.likes_count %></i>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= paginate @likes %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<% comments.each do |comment|%>
+  <% unless comment.id.nil? %>
+    <div class="バックグラウンドとかつけたい">
+      <ul class="list-group" style="margin-top: 20px">
+        <li class="list-group-item">
+          <div class="">
+            <p><%= link_to "#{comment.user.name}", users_mypage_path(comment.user.id) %></p>
+            <p readonly>コメント：<%= comment.comment %></p>
+            <% if comment.user == current_user %>
+              <p><%= link_to "コメントを削除する", users_article_comments_path(article_id: comment.article_id,comment_id: comment.id) , method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger rounded-pill", remote: true %></p>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

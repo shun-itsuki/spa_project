@@ -1,0 +1,26 @@
+
+<div class="row justify-content-center">
+  <%= image_tag("image1.jpg" , :size =>'1100x350')  %>
+</div>
+
+<div class="container">
+  <div class="jumbotron mt-5">
+    <h1 class="display-5">温泉プロジェクト!について</h1>
+    <p class="lead">このページは下記のような方にぴったりです♪</p>
+    <hr class="my-4">
+    <p>みんなのオススメの温泉を知りたい！</p>
+    <p>どんな温泉か画像付きで見たい！</p>
+    <p>近くの温泉を探したい！</p>
+  </div><!-- /.jumbotron -->
+</div><!-- /.container -->
+
+<div class="container">
+  <div class="jumbotron mt-5">
+    <h1 class="display-5">会員登録のメリット</h1>
+    <hr class="my-4">
+    <p>自分で温泉を投稿することができる。</p>
+    <p>登録ユーザー同士でコミュニケーションが取れる</p>
+    <p>気に入った記事をいいねしていつでも読み返せる！</p>
+    <%= link_to "会員登録してみる", new_user_registration_path , class: "btn btn-primary btn-lg" %>
+  </div><!-- /.jumbotron -->
+</div><!-- /.container -->

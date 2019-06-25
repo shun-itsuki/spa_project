@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row border">
+    <div class="col-8 offset-2">
+      <button onclick="geoFindMe()" type="button" class="btn-outline-secondary" style="margin-top:10px;">現在地から温泉を探す！</button>
+      <div id="out"></div>
+      <div id="map" style='width: 100%; height: 300px;'></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function geoFindMe() {
+  var output = document.getElementById("out");
+  // お使いのブラウザがジオロケーション未対応の場合
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+    return;
+  }
+  // 緯度経度の取得に成功した場合
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    var locs = [{"lat":latitude,"lng":longitude,}];
+    var total_locs = [locs];
+    // パラメーターに引き渡す用
+    $.ajax({
+      // search コントローラーのsearch_aroundへアクセス
+      url: "/users/search_around",
+      // getかpostかを指定
+      type: "GET",
+      // 多分デフォルトでtrueだけど改めて指定
+      async: true,
+      // 渡してあげるデータを指定
+      data: {
+        latitude : position.coords.latitude,
+        longitude : position.coords.longitude,
+      }
+    }).done(function(data){
+      console.log(data);
+      total_locs = locs.concat(data);
+    });
+    // 確認用
+    console.log(total_locs);
+    // ↓現在地の情報を出す場合
+    // output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+    // グーグルマップを表示
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      console.log(latitude);
+      markers = handler.addMarkers(total_locs);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setCenter( new google.maps.LatLng(latitude,longitude));
+      handler.getMap().setZoom(16);
+    });
+  }
+  // 取得できなかった場合。
+  function error() {
+    output.innerHTML = "Unable to retrieve your location";
+  }
+  output.innerHTML = "<p>Locating…</p>";
+  navigator.geolocation.getCurrentPosition(success, error);
+}
+</script>

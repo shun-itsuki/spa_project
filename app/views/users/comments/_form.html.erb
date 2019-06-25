@@ -1,0 +1,9 @@
+
+<%= form_with(model: [article,comment], url: users_article_comments_path(article), method: :post) do |form| %>
+  <div class="form-group">
+    <%= form.text_area :comment, class: "form-control" %>
+  </div>
+  <div class="action">
+    <%= form.submit "コメントをする", class: "btn btn-primary btn-lg rounded-pill btn-block" %>
+  </div>
+<% end %>
