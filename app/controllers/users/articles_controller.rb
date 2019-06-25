@@ -1,4 +1,5 @@
 class Users::ArticlesController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
 
   def index
     @articles = Article.page(params[:page]).per(16)
@@ -11,7 +12,6 @@ class Users::ArticlesController < ApplicationController
   end
 
   def create
-    # binding.pry
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     if @article.save
@@ -23,6 +23,9 @@ class Users::ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    if @article.user != current_user
+      redirect_to users_mypage_path(current_user.id)
+    end
   end
 
   def show

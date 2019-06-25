@@ -1,4 +1,4 @@
-<h2 class="title">Mypage</h2>
+<h2 class="title"><%= @user.name %>のpage</h2>
 <div class="row">
   <div class="col-2 offset-1">
     <%= attachment_image_tag @user, :image, :fill,220,180, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "220x180" %>
@@ -17,10 +17,16 @@
     </table>
   </div>
   <div class="col-2">
-    <%= link_to "編集", edit_users_mypage_path(current_user.id), class: "btn btn-outline-primary btn-lg rounded-pill btn-block"  %>
-    <%= link_to "大事な編集", edit_user_registration_path(current_user.id), class: "btn btn-outline-primary btn-lg rounded-pill btn-block"  %>
-    <%= link_to "退会する", user_registration_path(current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger btn-lg rounded-pill btn-block" %>
+    <!-- current_user以外編集不可 -->
+    <% if @user == current_user %>
+      <%= link_to "編集", edit_users_mypage_path(current_user.id), class: "btn btn-outline-primary btn-lg rounded-pill btn-block"  %>
+      <%= link_to "大事な編集", edit_user_registration_path(current_user.id), class: "btn btn-outline-primary btn-lg rounded-pill btn-block"  %>
+      <%= link_to "退会する", user_registration_path(current_user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger btn-lg rounded-pill btn-block" %>
+    <% end %>
   </div>
+
+<!-- userがcurrent_userの場合のみ下のコマンドが可能 -->
+<% if @user == current_user %>
   <div class="col-10 offset-1" style="margin-top : 20px">
     <div class="row">
       <div class="col-3 ">
@@ -37,6 +43,15 @@
       </div>
     </div>
   </div>
+<% end %>
+
+<% if @user == current_user %>
+<% else %>
+<div class="col-12">
+  <h3 class="title">記事一覧</h3>
+</div>
+<% end %>
+
   <div class="col-10 offset-1">
     <div class="article-list jscroll">
       <div class="row">

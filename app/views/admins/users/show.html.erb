@@ -1,36 +1,43 @@
-<div style="text-align:center; margin:auto;"><h2>Mypage</h2></div>
-<div class="row justify-content-md-center">
-  <div class="col-md-2">
-    <%= attachment_image_tag @user, :image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %>
+<h2 class="title">Userpage</h2>
+<div class="row">
+  <div class="col-2 offset-1">
+    <%= attachment_image_tag @user, :image, :fill,220,180, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "220x180" %>
   </div>
-  <div class="col-md-8">
+  <div class="col-6">
     <table class="table">
       <tr>
-        <th>名前&nbsp;:</th><td><%= @user.name %></td>
+        <th>name：</th><td><%= @user.name %></td>
       </tr>
       <tr>
-        <th>アドレス&nbsp;:</th><td><%= @user.address %></td>
+        <th>address：</th><td><%= @user.address %></td>
       </tr>
       <tr>
-        <th>プロフィール&nbsp;:</th><td><%= @user.profile %></td>
+        <th>profile：</th><td><%= @user.profile %></td>
       </tr>
     </table>
   </div>
-  <div class="col-md-2">
+  <div class="col-2">
     <%= link_to "編集", edit_admins_user_path, class: "btn btn-primary btn-lg rounded-pill btn-block"  %>
     <%= link_to "退会させる", admins_user_path, method: :delete, "data-confirm" => "本当に退会させますか？", class: "btn btn-danger btn-lg rounded-pill btn-block" %>
   </div>
-</div>
 
-<div class="row">
-  <div class="article-list jscrol">
-    <% @articles.each do |article| %>
-      <div class="float_item">
-        <%= attachment_image_tag article, :article_image, :fill,200,200, format:"jpeg", class:"", fallback:"no_image.jpeg", :size => "200x200" %><br />
-        名前：&nbsp;<%= link_to article.spa_name, admins_article_path(article.id) %><br/>
-        いいね：&nbsp;<%= article.likes_count %>
+  <div class="col-10 offset-1">
+    <div class="article-list jscroll">
+      <div class="row">
+        <% @articles.each do |article| %>
+          <div class="col-sm-6 col-md-3">
+            <div class="card img-thumbnail shadow-sm">
+              <%= attachment_image_tag article, :article_image, :fill,260,250, format:"jpeg", class:"card-image-top", fallback:"no_image.jpeg", :size => "260x250" %>
+              <div class="card-body px-2 py-3">
+                <h5 class="card-title"><%= link_to article.spa_name, admins_article_path(article.id) %></h5>
+                <p class="card-text"><%= (article.impression).truncate(30) %></p>
+                <i class="fas fa-heart"><%= article.likes_count %></i>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= paginate @articles %>
       </div>
-    <% end %>
-    <%= paginate @articles %>
+    </div>
   </div>
 </div>

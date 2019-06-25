@@ -1,6 +1,5 @@
 
 <%= form_with(model: [article,comment], url: users_article_comments_path(article), method: :post) do |form| %>
-  <!-- 次回この下から、コメントの背景色を変えたりする。 -->
   <div class="form-group">
     <%= form.text_area :comment, class: "form-control" %>
   </div>

@@ -1,5 +1,5 @@
 class Users::MypagesController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update]
+  before_action:authenticate_user!, only: [:edit, :update, :destroy]
 
   def show
     @user = User.find(params[:id])
@@ -30,5 +30,4 @@ class Users::MypagesController < ApplicationController
   def user_params
     params.require(:user).permit(:image, :name, :address, :profile)
   end
-
 end
