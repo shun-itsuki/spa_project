@@ -10,7 +10,6 @@ class Users::SearchController < ApplicationController
   end
 
   def search
-    # binding.pry
     latitude = params[:latitude].to_f
     longitude = params[:longitude].to_f
     @places = Article.all.near([latitude,longitude],3,units: :km)
