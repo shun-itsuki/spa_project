@@ -4,6 +4,7 @@ class Users::ArticlesController < ApplicationController
   def index
     @articles = Article.page(params[:page]).per(16)
     @like_ranking = Article.where(created_at:1.month.ago..Time.now).order(likes_count: "DESC").limit(4)
+    # 下記の命令文はsqlite3のもののため、本番環境では修正する。
     @recommendations = Article.order("RANDOM()").limit(4)
   end
 
@@ -29,7 +30,6 @@ class Users::ArticlesController < ApplicationController
   end
 
   def show
-    # binding.pry
     @article = Article.find(params[:id])
     @comment = Comment.new
     @comments = @article.comments
