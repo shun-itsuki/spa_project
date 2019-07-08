@@ -1,7 +1,7 @@
 <h3 class="title">みんなの注目の温泉<i class="fas fa-kiss-wink-heart"></i></h3>
-  <div class="row bg-info" style="margin-top : 30px" >
+  <div class="row bg-info adjust_margin">
     <div class="col-10 offset-1">
-      <div class="row" style="margin-bottom : 30px">
+      <div class="row adjust_attention">
         <% @like_ranking.each.with_index(1) do |article,i| %>
           <div class="col-sm-6 col-md-3 ">
             <div class="card-deck">
@@ -21,9 +21,20 @@
     </div>
   </div>
 <br/>
-<!-- cssで場所を調整する -->
-  <h4 class="title">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;温泉一覧<i class="fas fa-hot-tub"></i>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;温泉おすすめ<i class="fas fa-check"></i></h4>
+
     <div class="row">
+      <!-- タイトル部分 -->
+      <div class="col-10 offset-1">
+        <div class="row">
+          <div class="col-9 title">
+            <h4>温泉一覧<i class="fas fa-hot-tub"></i></h4>
+          </div>
+          <div class="col-3 title">
+            <h4>温泉おすすめ<i class="fas fa-check"></i></h4>
+          </div>
+        </div>
+      </div>
+
       <div class="col-10 offset-1">
         <div class="row">
           <div class="col-9">

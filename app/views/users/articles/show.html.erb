@@ -44,7 +44,7 @@
       <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
       <%= render partial: "users/comments/form", locals: {comment: @comment, article: @article} %>
     <% end %>
-    <div id="comments_area" style="margin-top: 20px">
+    <div id="comments_area" class="adjust_margin">
       <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
       <%= render partial: "users/comments/index", locals: {comments: @comments} %>
     </div>
@@ -53,7 +53,7 @@
 
 <% if user_signed_in? %>
   <% if @article.user_id == current_user.id %>
-    <div class="col-4 offset-4" style="margin-top : 20px">
+    <div class="col-4 offset-4 adjust_margin">
       <p><%= link_to "記事を編集する", edit_users_article_path, class: "btn btn-outline-info btn-lg rounded-pill btn-block" %></p>
       <p><%= link_to "記事を削除する", users_article_path(@article.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-info btn-lg rounded-pill btn-block" %></p>
     </div>

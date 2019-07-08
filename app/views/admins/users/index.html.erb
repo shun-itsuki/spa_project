@@ -1,4 +1,4 @@
-<div style="text-align:center;"><h2>ユーザー一覧</h2></div>
+<div class="title"><h2>ユーザー一覧</h2></div>
   <div class="row">
     <div class="col-10 offset-1">
       <div class="article-list jscroll">
@@ -7,7 +7,7 @@
             <div class="col-sm-6 col-md-3">
               <div class="card img-thumbnail shadow-lg">
                 <%= attachment_image_tag user, :image, :fill,260,200, format:"jpeg", class:"", fallback:"/images/no_image.jpeg", :size => "260x200" %>
-                <h5 class="card-title" style="margin-top:10px">名前：&nbsp;<%= link_to user.name, admins_user_path(user.id) %></h5>
+                <h5 class="card-title adjust_margin">名前：&nbsp;<%= link_to user.name, admins_user_path(user.id) %></h5>
               </div>
             </div>
           <% end %>

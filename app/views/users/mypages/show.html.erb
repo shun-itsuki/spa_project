@@ -27,7 +27,7 @@
 
 <!-- userがcurrent_userの場合のみ下のコマンドが可能 -->
 <% if @user == current_user %>
-  <div class="col-10 offset-1" style="margin-top : 20px">
+  <div class="col-10 offset-1 adjust_margin">
     <div class="row">
       <div class="col-3 ">
         <%= link_to "投稿記事", users_mypage_path , class: "btn btn-outline-info btn-lg rounded-pill btn-block"  %>

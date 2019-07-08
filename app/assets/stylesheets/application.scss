@@ -25,9 +25,13 @@
    background-color: #E6F3F3;
  }
 
- .article-list {
+.article-list {
    padding: 0;
- }
+}
+
+.adjust_attention{
+  margin-bottom: 30px;
+}
 
 .title{
   text-align: center;
@@ -69,4 +73,8 @@
 
 .fa-check{
   color: #BE0032;
+}
+
+.adjust_margin{
+  margin-top: 20px;
 }
